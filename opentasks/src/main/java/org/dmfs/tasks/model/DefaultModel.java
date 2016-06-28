@@ -89,17 +89,6 @@ public class DefaultModel extends Model
 		// task title
 		addField(new FieldDescriptor(context, R.id.task_field_title, R.string.task_title, TaskFieldAdapters.TITLE).setEditorLayout(TEXT_EDIT_SINGLE_LINE));
 
-		ArrayChoicesAdapter aca = new ArrayChoicesAdapter();
-		aca.addHiddenChoice(null, context.getString(R.string.status_needs_action), null);
-		aca.addChoice(Tasks.STATUS_NEEDS_ACTION, context.getString(R.string.status_needs_action), null);
-		aca.addChoice(Tasks.STATUS_IN_PROCESS, context.getString(R.string.status_in_process), null);
-		aca.addChoice(Tasks.STATUS_COMPLETED, context.getString(R.string.status_completed), null);
-		aca.addChoice(Tasks.STATUS_CANCELLED, context.getString(R.string.status_cancelled), null);
-
-		// status
-		addField(new FieldDescriptor(context, R.id.task_field_status, R.string.task_status, TaskFieldAdapters.STATUS).setViewLayout(CHOICES_VIEW)
-			.setEditorLayout(CHOICES_EDIT).setChoices(aca).setIcon(R.drawable.ic_detail_status));
-
 		// location
 		addField(new FieldDescriptor(context, R.id.task_field_location, R.string.task_location, TaskFieldAdapters.LOCATION).setViewLayout(TEXT_VIEW)
 			.setEditorLayout(TEXT_EDIT).setIcon(R.drawable.ic_detail_location));
@@ -109,7 +98,24 @@ public class DefaultModel extends Model
 			.setViewLayout(TEXT_VIEW.setOption(LayoutDescriptor.OPTION_LINKIFY, Linkify.ALL)).setEditorLayout(TEXT_EDIT)
 			.setIcon(R.drawable.ic_detail_description));
 
-		// description
+		ArrayChoicesAdapter aca2 = new ArrayChoicesAdapter();
+		aca2.addChoice(null, context.getString(R.string.priority_undefined), null);
+		aca2.addHiddenChoice(0, context.getString(R.string.priority_undefined), null);
+		aca2.addChoice(9, context.getString(R.string.priority_low), null);
+		aca2.addHiddenChoice(8, context.getString(R.string.priority_low), null);
+		aca2.addHiddenChoice(7, context.getString(R.string.priority_low), null);
+		aca2.addHiddenChoice(6, context.getString(R.string.priority_low), null);
+		aca2.addChoice(5, context.getString(R.string.priority_medium), null);
+		aca2.addHiddenChoice(4, context.getString(R.string.priority_high), null);
+		aca2.addHiddenChoice(3, context.getString(R.string.priority_high), null);
+		aca2.addHiddenChoice(2, context.getString(R.string.priority_high), null);
+		aca2.addChoice(1, context.getString(R.string.priority_high), null);
+
+		// priority
+		addField(new FieldDescriptor(context, R.id.task_field_priority, R.string.task_priority, TaskFieldAdapters.PRIORITY).setViewLayout(CHOICES_VIEW)
+				.setEditorLayout(CHOICES_EDIT).setChoices(aca2).setIcon(R.drawable.ic_detail_priority));
+
+		// checklist
 		addField(new FieldDescriptor(context, R.id.task_field_checklist, R.string.task_checklist, TaskFieldAdapters.CHECKLIST).setViewLayout(CHECKLIST_VIEW)
 			.setEditorLayout(CHECKLIST_EDIT).setIcon(R.drawable.ic_detail_checklist));
 
@@ -129,6 +135,17 @@ public class DefaultModel extends Model
 		addField(new FieldDescriptor(context, R.id.task_field_timezone, R.string.task_timezone, TaskFieldAdapters.TIMEZONE).setEditorLayout(CHOICES_EDIT)
 			.setChoices(tzaca));
 
+		ArrayChoicesAdapter aca = new ArrayChoicesAdapter();
+		aca.addHiddenChoice(null, context.getString(R.string.status_needs_action), null);
+		aca.addChoice(Tasks.STATUS_NEEDS_ACTION, context.getString(R.string.status_needs_action), null);
+		aca.addChoice(Tasks.STATUS_IN_PROCESS, context.getString(R.string.status_in_process), null);
+		aca.addChoice(Tasks.STATUS_COMPLETED, context.getString(R.string.status_completed), null);
+		aca.addChoice(Tasks.STATUS_CANCELLED, context.getString(R.string.status_cancelled), null);
+
+		// status
+		addField(new FieldDescriptor(context, R.id.task_field_status, R.string.task_status, TaskFieldAdapters.STATUS).setViewLayout(CHOICES_VIEW)
+				.setEditorLayout(CHOICES_EDIT).setChoices(aca).setIcon(R.drawable.ic_detail_status));
+
 		// completed
 		addField(new FieldDescriptor(context, R.id.task_field_completed, R.string.task_completed, TaskFieldAdapters.COMPLETED).setViewLayout(TIME_VIEW)
 			.setEditorLayout(TIME_EDIT).setIcon(R.drawable.ic_detail_completed));
@@ -136,23 +153,6 @@ public class DefaultModel extends Model
 		// percent complete
 		addField(new FieldDescriptor(context, R.id.task_field_percent_complete, R.string.task_percent_complete, TaskFieldAdapters.PERCENT_COMPLETE)
 			.setViewLayout(PROGRESS_VIEW).setEditorLayout(PROGRESS_EDIT).setIcon(R.drawable.ic_detail_progress));
-
-		ArrayChoicesAdapter aca2 = new ArrayChoicesAdapter();
-		aca2.addChoice(null, context.getString(R.string.priority_undefined), null);
-		aca2.addHiddenChoice(0, context.getString(R.string.priority_undefined), null);
-		aca2.addChoice(9, context.getString(R.string.priority_low), null);
-		aca2.addHiddenChoice(8, context.getString(R.string.priority_low), null);
-		aca2.addHiddenChoice(7, context.getString(R.string.priority_low), null);
-		aca2.addHiddenChoice(6, context.getString(R.string.priority_low), null);
-		aca2.addChoice(5, context.getString(R.string.priority_medium), null);
-		aca2.addHiddenChoice(4, context.getString(R.string.priority_high), null);
-		aca2.addHiddenChoice(3, context.getString(R.string.priority_high), null);
-		aca2.addHiddenChoice(2, context.getString(R.string.priority_high), null);
-		aca2.addChoice(1, context.getString(R.string.priority_high), null);
-
-		// priority
-		addField(new FieldDescriptor(context, R.id.task_field_priority, R.string.task_priority, TaskFieldAdapters.PRIORITY).setViewLayout(CHOICES_VIEW)
-			.setEditorLayout(CHOICES_EDIT).setChoices(aca2).setIcon(R.drawable.ic_detail_priority));
 
 		ArrayChoicesAdapter aca3 = new ArrayChoicesAdapter();
 		aca3.addChoice(null, context.getString(R.string.classification_not_specified), null);
