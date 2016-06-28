@@ -403,12 +403,14 @@ public class TaskListWidgetUpdaterService extends RemoteViewsService
 
 				// load all upcoming non-completed tasks
 				Cursor c = mContext.getContentResolver().query(
-					TaskContract.Instances.getContentUri(mAuthority),
-					null,
-					selection.toString(),
-					null,
-					TaskContract.Instances.INSTANCE_DUE + " is null, " + TaskContract.Instances.DEFAULT_SORT_ORDER + ", " + TaskContract.Instances.PRIORITY
-						+ " is null, " + TaskContract.Instances.PRIORITY + ", " + TaskContract.Instances.CREATED + " DESC");
+						TaskContract.Instances.getContentUri(mAuthority),
+						null,
+						selection.toString(),
+						null,
+						"CASE WHEN " + Instances.PRIORITY + " is null THEN 1 ELSE 0 END, " + Instances.PRIORITY + " ASC, " +
+								"CASE WHEN " + Instances.DUE + " is null THEN 1 else 0 END, " + Instances.DUE + " ASC, " +
+								Instances.TITLE + " COLLATE NOCASE ASC"
+				);
 
 				if (c != null)
 				{
