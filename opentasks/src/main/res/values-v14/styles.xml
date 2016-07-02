@@ -96,7 +96,7 @@
     </style>
 
     <style name="widget_header_divider">
-        <item name="android:background">@android:color/holo_blue_bright</item>
+        <item name="android:background">#03a9f4</item>
     </style>
 
     <style name="dialog_button_primary" parent="TextAppearance.AppCompat.Button">
