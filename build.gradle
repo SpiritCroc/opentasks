@@ -18,7 +18,7 @@ def gitVersion = { ->
 }
 
 allprojects {
-    version gitVersion()
+    version "sc-1.1"
 
     repositories {
         jcenter()
